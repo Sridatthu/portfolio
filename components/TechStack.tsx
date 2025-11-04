@@ -15,10 +15,11 @@ const TechStack = () => {
   const isDark = theme === "dark";
 
   const technologies = {
-    frontend: ["React", "Nextjs", "Shadcn", "SCSS", "Tailwindcss", "Framer-Motion", "Recoil", "Tanstack Query"],
-    backend: ["Nodejs", "Honojs", "Expressjs", "NPM"],
-    dbServices: ["Cloudflare Workers", "Docker", "Appwrite", "Supabase", "Prisma ORM", "Postman", "Postgres", "MongoDB"],
-    learning: ["Rust"],
+    languages:["Java","JavaScript","TypeScript","HTML","CSS"],
+    frontend: ["React", "Nextjs", "Shadcn","Tailwindcss", "Framer-Motion", "Recoil", "Redux"],
+    backend: ["Nodejs", "SpringBoot", "Expressjs", "NPM"],
+    dbServices: ["GitHub", "Docker", "MySql", "Spring JPA", "Prisma ORM", "Postman", "Postgres", "MongoDB"],
+    learning: ["Kubernetes"],
   };
 
   const TechBadge = ({ name }: { name: string }) => (
@@ -97,6 +98,7 @@ const TechStack = () => {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             <style>{`.scrollbar-hide::-webkit-scrollbar { display: none; }`}</style>
+              <TechCategory title="Languages:" items={technologies.languages} />
             <TechCategory title="Frontend:" items={technologies.frontend} />
             <TechCategory title="Backend:" items={technologies.backend} />
             <TechCategory title="Db & Services:" items={technologies.dbServices} />

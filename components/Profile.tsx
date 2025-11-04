@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import pfp from "../public/pfp.webp";
 import Image from "next/image";
 import { MorphingText } from "./ui/morphing-text";
-import { useTheme } from "next-themes";
+import { useThemeTransition } from "@/hooks/useThemeTransition";
 
 const Profile = () => {
   const [time, setTime] = useState<string>("");
-  const { theme, setTheme } = useTheme();
+  const { theme, toggleTheme } = useThemeTransition();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -60,17 +60,17 @@ const Profile = () => {
               />
               <div>
                 <p className={`font-bold text-lg transition-colors ${isDark ? "text-white" : "text-black"}`}>
-                  Shawn.
+                  Sri Datthu Goud.
                 </p>
                 <p className={`text-xs font-mono transition-colors ${isDark ? "text-zinc-400" : "text-gray-500"}`}>
-                  @zzzzshawn
+                  @483Sri
                 </p>
               </div>
             </div>
 
-            {/* Theme Toggle Button */}
+            {/* Theme Toggle Button with Transition */}
             <button
-              onClick={() => setTheme(isDark ? "light" : "dark")}
+              onClick={() => toggleTheme()}
               className={`inline-flex items-center justify-center text-lg font-medium transition-all duration-300 h-9 w-9 rounded-full border-none flex-shrink-0 ${
                 isDark ? "hover:bg-white/10" : "hover:bg-black/10"
               }`}
@@ -88,34 +88,35 @@ const Profile = () => {
           {/* Middle Section - Centered */}
           <div className="flex flex-col gap-3">
             {/* Bio with MorphingText */}
-            <div className={`flex items-center gap-1 text-sm transition-colors ${isDark ? "text-white" : "text-black"}`}>
+            <div className={`flex items-center gap-1 text-base transition-colors ${isDark ? "text-white" : "text-black"}`}>
               <span>I build</span>
-              <div className="h-5 w-24 relative">
+              <div className="h-7 w-24 relative">
                 <MorphingText texts={["backend", "frontend", "WebApps"]} />
               </div>
             </div>
 
-            <p className={`text-xs leading-tight transition-colors ${isDark ? "text-zinc-400" : "text-gray-600"}`}>
-              Hello, I'm Shawn! a 22 year old developer based in Goa - India.
+            <p className={`text-base leading-tight transition-colors ${isDark ? "text-white" : "text-gray-800"}`}>
+              Hello, I'm Sri Datthu! a 23 year old developer based in Hyderabad - India.
             </p>
           </div>
 
           {/* Bottom Section - Footer */}
           <div className="w-full flex justify-between items-end">
             <div className="max-sm:hidden">
-              <p className={`text-xs font-mono leading-tight transition-colors ${isDark ? "text-zinc-400/70" : "text-gray-500/70"}`}>
+              <p className={`text-sm font-mono leading-tight transition-colors ${isDark ? "text-zinc-400/70" : "text-gray-500/70"}`}>
                 &quot;How do i center <br />a div again??&quot;
               </p>
             </div>
 
             <div className="ml-auto flex flex-col items-end gap-1">
-              <p className={`text-xs font-mono transition-colors ${isDark ? "text-zinc-500" : "text-gray-500"}`}>
-                {time}
-              </p>
+              
               <div className={`font-mono flex items-center gap-1 text-xs transition-colors ${isDark ? "text-zinc-400" : "text-gray-600"}`}>
                 <div className="size-2 rounded-full bg-green-500 animate-pulse"></div>
                 <p className="text-xs">Available for work</p>
               </div>
+              <p className={`text-xs font-mono transition-colors ${isDark ? "text-zinc-500" : "text-gray-500"}`}>
+                {time}
+              </p>
             </div>
           </div>
         </div>

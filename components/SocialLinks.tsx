@@ -17,14 +17,14 @@ const SocialLinks = () => {
   const isDark = theme === "dark";
 
   const topLinks = [
-    { name: "github", icon: "/icons/github.svg", url: "https://github.com/zzzzshawn" },
-    { name: "x.com", icon: "/icons/x.svg", url: "https://x.com/zzzzshawn" },
+    { name: "github", icon: "/icons/github.svg", url: "https://github.com/Sridatthu" },
+    { name: "x.com", icon: "/icons/x.svg", url: "https://x.com/483Sri" },
   ];
 
   const bottomLinks = [
-    { name: "gmail", icon: "/icons/gmail.svg", url: "mailto:shawndsilva.mail@gmail.com" },
+    { name: "gmail", icon: "/icons/gmail.svg", url: "mailto:sridatthu18@gmail.com" },
     { name: "discord", icon: "/icons/discord.svg", url: "https://discordapp.com/users/816919689350742026" },
-    { name: "linkedIn", icon: "/icons/linkdin.svg", url: "https://www.linkedin.com/in/zzshawndsilva/" },
+    { name: "linkedIn", icon: "/icons/linkdin.svg", url: "https://www.linkedin.com/in/sri-datthu-goud/" },
   ];
 
   const SocialIcon = ({ name, icon, url }: { name: string; icon: string; url: string }) => (

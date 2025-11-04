@@ -17,11 +17,11 @@ const DailyToolStack = () => {
 
   const tools = [
     { name: "VSCode", icon: "/icons/vscode.webp" },
-    { name: "v0", icon: "/icons/v0.svg" },
-    { name: "Dia", icon: "/icons/dia.svg" },
-    { name: "Motion", icon: "/icons/motion.svg" },
+    { name: "Intellij Idea", icon: "/icons/idea.webp" },
+    { name: "PostMan", icon: "/icons/post2.webp" },
+    { name: "Spotify", icon: "/icons/spotify2.svg" },
+     { name: "Motion", icon: "/icons/motion.svg" },
     { name: "Figma", icon: "/icons/figma_logo.svg" },
-    { name: "T3", icon: "/icons/t3.svg" },
   ];
 
   const ToolIcon = ({ icon, name }: { icon: string; name: string }) => (
@@ -84,9 +84,9 @@ const DailyToolStack = () => {
           </div>
 
           <div className="sm:col-start-2 sm:col-end-4 sm:row-start-4 sm:row-end-7 rounded-3xl bg-transparent group relative">
-            <Image alt="track" src="/assets/fox.webp" width={1024} height={1024} className="aspect-square size-full object-cover rounded-3xl" priority={false} />
+            <Image alt="track" src="/assets/for.avif" width={1024} height={1024} className="aspect-square size-full object-cover rounded-3xl" priority={false} />
             <a
-              href="https://open.spotify.com/track/4yJZP61jBhVTesHBZ0gpQn"
+              href="https://open.spotify.com/track/0cYohCh24y1aMjJmcS9RBl"
               target="_blank"
               rel="noopener noreferrer"
               className={`border absolute size-10 bottom-3 right-3 translate-y-7 scale-50 opacity-0 group-hover:translate-y-0 group-hover:scale-100 translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all rounded-full flex items-center justify-center duration-300 max-sm:group-hover:scale-150 max-sm:bottom-7 max-sm:right-7 max-sm:translate-y-12 p-px backdrop-blur-2xl backdrop-saturate-200 ${
@@ -102,16 +102,16 @@ const DailyToolStack = () => {
           </div>
 
           <div className="sm:col-start-2 sm:col-end-4 sm:row-start-7 sm:row-end-8 p-1">
-            <a href="https://open.spotify.com/track/4yJZP61jBhVTesHBZ0gpQn" target="_blank" rel="noopener noreferrer" className={`font-bold text-lg transition-colors hover:opacity-80 ${
+            <a href="https://open.spotify.com/track/0cYohCh24y1aMjJmcS9RBl" target="_blank" rel="noopener noreferrer" className={`font-bold text-lg transition-colors hover:opacity-80 ${
               isDark ? "text-white" : "text-black"
             }`}>
-              Fox on the Run
+              For A Reason
             </a>
             <div className={`flex justify-between text-xs pointer-events-none transition-colors ${
               isDark ? "text-zinc-500" : "text-gray-500"
             }`}>
-              <p>By: Sweet</p>
-              <p className="font-mono">2016</p>
+              <p>By: Karan Aujla</p>
+              <p className="font-mono">2025</p>
             </div>
           </div>
 
