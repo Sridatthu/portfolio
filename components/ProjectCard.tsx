@@ -1,26 +1,30 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 const ProjectCard = () => {
-  const ripples = [
-    { size: 230, delay: 0, opacity: 0.23 },
-    { size: 310, delay: 0.06, opacity: 0.2 },
-    { size: 390, delay: 0.12, opacity: 0.17 },
-    { size: 470, delay: 0.18, opacity: 0.14 },
-    { size: 550, delay: 0.24, opacity: 0.11 },
-    { size: 630, delay: 0.3, opacity: 0.08 },
-    { size: 710, delay: 0.36, opacity: 0.05 },
-    { size: 790, delay: 0.42, opacity: 0.02 },
-  ];
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+  const isDark = theme === "dark";
 
   return (
     <motion.div
       role="button"
       tabIndex={0}
       aria-label="Draggable element"
-      className="flex w-full rounded-xl border border-dark-3 bg-purple-600 transform-gpu [box-shadow:0_0px_60px_-20px_#ffffff1f_inset] cursor-grab row-start-4 sm:col-start-7 sm:col-end-9 sm:row-start-2 sm:row-end-4 p-0 z-8 max-sm:h-max mx-auto overflow-hidden border-none relative hover:scale-125 transition-transform duration-300"
+      className={`flex w-full rounded-xl border transform-gpu cursor-grab row-start-4 sm:col-start-7 sm:col-end-9 sm:row-start-2 sm:row-end-4 p-0 z-8 max-sm:h-max mx-auto overflow-hidden relative hover:scale-125 transition-all duration-300 ${
+        isDark
+          ? "bg-purple-600 border-dark-3 [box-shadow:0_0px_60px_-20px_#ffffff1f_inset]"
+          : "bg-purple-400 border-purple-300 [box-shadow:0_0px_20px_-10px_#c084fc40_inset]"
+      } border-none`}
       draggable="false"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
@@ -28,28 +32,11 @@ const ProjectCard = () => {
     >
       <div className="w-full h-full">
         <Link href="/projects">
-          <div className="flex flex-col justify-start items-start relative group w-full h-full p-2 max-sm:p-5 rounded-lg max-sm:h-[350px] overflow-hidden transition-all cursor-pointer bg-blue-500/70">
-            <div className="absolute inset-0 bg-transparent">
-              {ripples.map((ripple, index) => (
-                <div
-                  key={index}
-                  className="absolute animate-ripple rounded-full shadow-xl border bg-white"
-                  style={{
-                    width: `${ripple.size}px`,
-                    height: `${ripple.size}px`,
-                    opacity: ripple.opacity,
-                    animationDelay: `${ripple.delay}s`,
-                    borderStyle: index === 7 ? "dashed" : "solid",
-                    borderWidth: "1px",
-                    borderColor: "rgba(255, 255, 255, 0.2)",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%) scale(1)",
-                  }}
-                />
-              ))}
-            </div>
-
+          <div className={`flex flex-col justify-start items-start relative group w-full h-full p-2 max-sm:p-5 rounded-lg max-sm:h-[350px] overflow-hidden transition-all cursor-pointer ${
+            isDark ? "bg-purple-600/70" : "bg-purple-300/70"
+          }`}>
+            <div className="absolute inset-0 bg-transparent"></div>
+            
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -60,7 +47,7 @@ const ProjectCard = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="size-12 max-sm:size-20 lg:size-14 my-2 animate-spin-slow stroke-[2.5] relative z-10 text-black"
+              className={`size-12 max-sm:size-20 lg:size-14 my-2 animate-spin-slow stroke-[2.5] relative z-10 transition-colors text-black`}
             >
               <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path>
               <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>
@@ -78,13 +65,17 @@ const ProjectCard = () => {
               <path d="m11 13.73-4 6.93"></path>
             </svg>
 
-            <h2 className="sm:text-[1.9rem] max-sm:text-6xl overflow-hidden lg:text-[2.2rem] leading-7 lg:leading-10 font-bold w-full text-wrap relative z-10 text-black">
-              PROJECT<br />SSS
+            <h2 className={`sm:text-[1.9rem] max-sm:text-6xl overflow-hidden lg:text-[2.2rem] leading-7 lg:leading-10 font-bold w-full text-wrap relative z-10 transition-colors text-black`}>
+              PROJECT
+              <br />
+              SSS
             </h2>
 
-            <div className="flex flex-col absolute bottom-4 right-4 text-xl leading-snug relative z-10">
-              <p className="font-extrabold text-black">工</p>
-              <p className="font-extrabold text-black">芸</p>
+            <div className={`flex flex-col absolute bottom-4 right-4 text-xl leading-snug relative z-10 transition-colors ${
+              isDark ? "text-black" : "text-white"
+            }`}>
+              <p className="font-extrabold">工</p>
+              <p className="font-extrabold">芸</p>
             </div>
           </div>
         </Link>

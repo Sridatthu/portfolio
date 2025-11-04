@@ -1,10 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 const SocialLinks = () => {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const { theme } = useTheme();
+   const [mounted, setMounted] = useState(false);
+      
+        useEffect(() => {
+          setMounted(true);
+        }, []);
+      
+        if (!mounted) return null;
+  const isDark = theme === "dark";
 
   const topLinks = [
     { name: "github", icon: "/icons/github.svg", url: "https://github.com/zzzzshawn" },
@@ -22,17 +32,23 @@ const SocialLinks = () => {
       <a
         target="_blank"
         rel="noopener noreferrer"
-        className="border border-dark-4 rounded-2xl flex items-center justify-center p-0.5 max-lg:size-[3.4rem] lg:size-[3.8rem] max-sm:size-[3.2rem] transition-all hover:shadow-lg"
+        className={`border rounded-2xl flex items-center justify-center p-0.5 max-lg:size-[3.4rem] lg:size-[3.8rem] max-sm:size-[3.2rem] transition-all hover:shadow-lg ${
+          isDark ? "border-dark-4" : "border-gray-300"
+        }`}
         href={url}
         onMouseEnter={() => setHoveredLink(name)}
         onMouseLeave={() => setHoveredLink(null)}
       >
-        <div className="border border-dark-3 size-full flex items-center justify-center p-2 rounded-xl bg-black ">
-          <Image alt={`${name} logo`} src={icon} width={20} height={20} className="w-[80%]" priority={false} />
+        <div className={`border size-full flex items-center justify-center p-2 rounded-xl transition-colors ${
+          isDark ? "border-dark-3 bg-black" : "border-gray-300 bg-white"
+        }`}>
+          <Image alt={`${name} logo`} src={icon} width={20} height={20} className={`w-[80%]`} priority={false} />
         </div>
       </a>
       {hoveredLink === name && (
-        <div className="absolute w-16 left-0 -top-6 origin-right flex opacity-100 items-center justify-center transition-all duration-500 ease-in-out text-black font-bold rounded-md text-sm whitespace-nowrap z-50 bg-white">
+        <div className={`absolute w-16 left-0 -top-6 origin-right flex opacity-100 items-center justify-center transition-all duration-500 ease-in-out font-bold rounded-md text-sm whitespace-nowrap z-50 ${
+          isDark ? "text-black bg-white" : "text-white bg-black"
+        }`}>
           {name}
         </div>
       )}
@@ -53,7 +69,9 @@ const SocialLinks = () => {
       <div className="w-full h-full">
         <div className="relative h-full p-0.5 gap-0.5 flex flex-col max-sm:flex-row max-sm:justify-center justify-between mr-auto bg-transparent">
           <ul className="flex w-max justify-center gap-0.5 items-center h-1/2">
-            <li className="m-0 flex items-center justify-center p-2 max-lg:size-[3.4rem] lg:size-[3.8rem] max-sm:text-[1.7rem] lg:text-[2.2rem] max-lg:text-[1.7rem] font-bold leading-7 lg:leading-8 max-sm:hidden text-white">
+            <li className={`m-0 flex items-center justify-center p-2 max-lg:size-[3.4rem] lg:size-[3.8rem] max-sm:text-[1.7rem] lg:text-[2.2rem] max-lg:text-[1.7rem] font-bold leading-7 lg:leading-8 max-sm:hidden transition-colors ${
+              isDark ? "text-white" : "text-black"
+            }`}>
               <h2>LIN<br />KS.</h2>
             </li>
             {topLinks.map((link) => (
