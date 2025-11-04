@@ -20,7 +20,7 @@ const ProjectCard = () => {
       role="button"
       tabIndex={0}
       aria-label="Draggable element"
-      className={`flex w-full rounded-xl border transform-gpu cursor-grab row-start-4 sm:col-start-7 sm:col-end-9 sm:row-start-2 sm:row-end-4 p-0 z-8 max-sm:h-max mx-auto overflow-hidden relative hover:scale-125 transition-all duration-300 ${
+      className={`flex w-full rounded-xl border transform-gpu cursor-grab row-start-4 sm:col-start-7 sm:col-end-9 sm:row-start-2 sm:row-end-4 p-0 z-8 max-sm:h-max mx-auto overflow-hidden relative hover:scale-95 transition-all duration-300 ${
         isDark
           ? "bg-purple-600 border-dark-3 [box-shadow:0_0px_60px_-20px_#ffffff1f_inset]"
           : "bg-purple-400 border-purple-300 [box-shadow:0_0px_20px_-10px_#c084fc40_inset]"
@@ -28,7 +28,7 @@ const ProjectCard = () => {
       draggable="false"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 0 }}
     >
       <div className="w-full h-full">
         <Link href="/projects">
@@ -71,12 +71,12 @@ const ProjectCard = () => {
               SSS
             </h2>
 
-            <div className={`flex flex-col absolute bottom-4 right-4 text-xl leading-snug relative z-10 transition-colors ${
-              isDark ? "text-black" : "text-white"
-            }`}>
-              <p className="font-extrabold">工</p>
-              <p className="font-extrabold">芸</p>
-            </div>
+          <div
+  className={`flex flex-col absolute bottom-4 right-4 p-1 text-black z-50`}
+>
+  <p className="font-extrabold">工</p>
+  <p className="font-extrabold">芸</p>
+</div>
           </div>
         </Link>
       </div>

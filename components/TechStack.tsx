@@ -23,13 +23,17 @@ const TechStack = () => {
 
   const TechBadge = ({ name }: { name: string }) => (
     <div
-      className={`px-2.5 py-1 text-xs font-mono border rounded transition-all ${
+      className={`px-0.5 py-0.5 text-xs font-mono border rounded-lg transition-all ${
         isDark
-          ? "border-zinc-600 text-zinc-200 hover:border-zinc-400 hover:text-white bg-transparent hover:bg-zinc-900/50"
-          : "border-gray-300 text-gray-700 hover:border-gray-500 hover:text-black bg-white hover:bg-gray-50"
+          ? "border-zinc-600 hover:border-zinc-400 hover:bg-zinc-900/50"
+          : "border-gray-300 hover:border-gray-500 hover:bg-gray-50"
       }`}
     >
-      {name}
+       <p className={`px-2.5 rounded-md border dark:border-dark-2/65 border-zinc-700 mx-auto ${isDark
+        ? " text-zinc-200 hover:text-white bg-transparent"
+        :" text-gray-700 hover:text-black bg-white"
+       }`}>{name}</p>
+
     </div>
   );
 
