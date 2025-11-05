@@ -24,15 +24,15 @@ const TechStack = () => {
 
   const TechBadge = ({ name }: { name: string }) => (
     <div
-      className={`px-0.5 py-0.5 text-xs font-mono border rounded-lg transition-all ${
+      className={`px-0.5 py-0.5 text-xs font-mono border rounded-lg duration-500 transition-all ${
         isDark
           ? "border-zinc-600 hover:border-zinc-400 hover:bg-zinc-900/50"
           : "border-gray-300 hover:border-gray-500 hover:bg-gray-50"
       }`}
     >
-       <p className={`px-2.5 rounded-md border dark:border-dark-2/65 border-zinc-700 mx-auto ${isDark
-        ? " text-zinc-200 hover:text-white bg-transparent"
-        :" text-gray-700 hover:text-black bg-white"
+       <p className={`px-2.5 font-mono rounded-md border dark:border-gray-500 border-zinc-200 mx-auto ${isDark
+        ? " text-zinc-350 hover:text-white bg-transparent"
+        :" text-gray-800 hover:text-black bg-white"
        }`}>{name}</p>
 
     </div>
@@ -40,7 +40,7 @@ const TechStack = () => {
 
   const TechCategory = ({ title, items }: { title: string; items: string[] }) => (
     <div className="flex flex-col gap-1.5">
-      <p className={`font-semibold text-xs tracking-wide transition-colors ${isDark ? "text-white" : "text-black"}`}>
+      <p className={`font-semibold text-xs font-mono tracking-wide transition-colors ${isDark ? "text-white" : "text-black"}`}>
         {title}
       </p>
       <div className="flex flex-wrap gap-1.5">
@@ -76,15 +76,15 @@ const TechStack = () => {
               <p className={`text-4xl font-bold transition-colors ${isDark ? "text-white" : "text-black"}`}>
                 {"{"}
               </p>
-              <p className={`text-4xl font-bold transition-colors ${isDark ? "text-white" : "text-black"}`}>
+              <p className={`text-4xl font-bold duration-500 group-hover:pl-2 transition-colors ${isDark ? "text-white" : "text-black"}`}>
                 {"}"}
               </p>
             </div>
-            <h1 className={`text-5xl font-extrabold py-3 relative w-full transition-colors ${isDark ? "text-white" : "text-black"}`}>
+            <h1 className={`text-5xl font-bold font-mono py-3 relative w-full transition-colors ${isDark ? "text-white" : "text-black"}`}>
               TECH <br />
               STACK
               <span
-                className={`absolute bottom-1 left-0 w-0 h-1 rounded-full transition-all duration-500 group-hover:w-[120px] ${
+                className={`absolute bottom-1 left-0 w-0 h-1 rounded-full transition-all duration-500 group-hover:w-[165px] ${
                   isDark ? "bg-white" : "bg-black"
                 }`}
               ></span>
@@ -92,7 +92,7 @@ const TechStack = () => {
           </div>
 
           <div
-            className={`relative mt-4 w-full flex flex-col overflow-y-auto p-4 gap-6 max-h-96 transition-colors scrollbar-hide ${
+            className={`relative mt-2 w-full flex flex-col overflow-y-auto p-4 gap-6 max-h-96 transition-colors scrollbar-hide ${
               isDark ? "text-zinc-200/80" : "text-gray-600"
             }`}
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}

@@ -42,7 +42,15 @@ const SocialLinks = () => {
         <div className={`border size-full flex items-center justify-center p-2 rounded-xl transition-colors ${
           isDark ? "border-dark-3 bg-black" : "border-gray-300 bg-white"
         }`}>
-          <Image alt={`${name} logo`} src={icon} width={20} height={20} className={`w-[80%]`} priority={false} />
+          <Image
+  alt={`${name} logo`}
+  src={icon}
+  width={20}
+  height={20}
+  className={`w-[80%] ${!isDark ? "invert" : ""}`}
+  priority={false}
+/>
+
         </div>
       </a>
       {hoveredLink === name && (
