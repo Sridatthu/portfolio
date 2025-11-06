@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Github, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, Github, ExternalLink, House } from "lucide-react";
 import Link from "next/link";
 
 interface Project {
@@ -114,7 +114,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
     <main className="min-h-screen flex items-center justify-center relative mx-auto max-w-5xl font-spaceGrotesk">
       <div className="w-full relative z-50">
         <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 mx-3 bg-white dark:bg-white hover:bg-white/70 text-zinc-700 dark:text-gray-900">
-         <Link href={"/"}> <ChevronLeft className="h-6 w-6" /></Link>
+         <Link href={"/"}> <House className="h-6 w-6" /></Link>
         </button>
 
         <div className="relative w-full">
