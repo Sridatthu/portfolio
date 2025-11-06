@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { Ripple } from "./ui/ripple";
 
 const ProjectCard = () => {
   const { theme } = useTheme();
@@ -33,9 +34,13 @@ const ProjectCard = () => {
       <div className="w-full h-full">
         <Link href="/projects">
           <div className={`flex flex-col justify-start items-start relative group w-full h-full p-2 max-sm:p-5 rounded-lg max-sm:h-[350px] overflow-hidden transition-all cursor-pointer ${
-            isDark ? "bg-purple-600/70" : "bg-purple-300/70"
+            isDark ? "bg-purple-600/70" : "bg-blue-300/70"
           }`}>
-            <div className="absolute inset-0 bg-transparent"></div>
+            <div className="absolute inset-0 bg-transparent">
+               <div className="relative h-[500px] w-full  overflow-hidden rounded-lg border">
+      <Ripple />
+    </div>
+            </div>
             
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -65,11 +70,11 @@ const ProjectCard = () => {
               <path d="m11 13.73-4 6.93"></path>
             </svg>
 
-            <h2 className={`sm:text-[1.9rem] max-sm:text-6xl overflow-hidden lg:text-[2.2rem] leading-7 lg:leading-10 font-bold w-full text-wrap relative z-10 transition-colors text-black`}>
-              PROJECT
-              <br />
-              SSS
-            </h2>
+         <h2 className={`text-xl sm:text-3xl md:text-3xl lg:text-[2.2rem] italic leading-tight sm:leading-snug md:leading-7 lg:leading-10 font-extrabold w-full break-words relative z-10 transition-colors text-black`}>
+  PROJECT
+  <br />
+  SSS
+</h2>
 
           <div
   className={`flex flex-col absolute bottom-4 right-4 p-1 text-black z-50`}
