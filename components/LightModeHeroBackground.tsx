@@ -34,7 +34,7 @@ export default function LightModeHeroBackground() {
         decoding="async"
         className="w-[60%] lg:w-[687px] -left-0 top-[20%] lg:top-12 absolute object-contain"
         style={{ color: "transparent" }}
-        src="/CloudCrop.webp"
+        src="/CloudCrop1.webp"
       />
 
       {/* Right cloud */}
