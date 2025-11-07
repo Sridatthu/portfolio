@@ -23,7 +23,7 @@ const SocialLinks = () => {
 
   const bottomLinks = [
     { name: "gmail", icon: "/icons/gmail.svg", url: "mailto:sridatthu18@gmail.com" },
-    { name: "discord", icon: "/icons/discord.svg", url: "https://discordapp.com/users/816919689350742026" },
+    { name: "discord", icon: "/icons/discord.svg", url:"https://discord.gg/u9jXtJhD" },
     { name: "linkedIn", icon: "/icons/linkdin.svg", url: "https://www.linkedin.com/in/sri-datthu-goud/" },
   ];
 
