@@ -52,7 +52,7 @@ const Profile = () => {
             <div className="flex gap-3">
               <Image
                 alt="profile"
-                src={pfp}
+                src="/jonsnow.png"
                 width={64}
                 height={64}
                 className="size-16 rounded-3xl opacity-90"
