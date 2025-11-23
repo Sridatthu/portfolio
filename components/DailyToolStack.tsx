@@ -100,10 +100,17 @@ const DailyToolStack = () => {
       tabIndex={0}
       aria-label="Draggable element"
       className="relative flex w-full rounded-xl border-none bg-transparent transform-gpu cursor-grab sm:col-start-3 sm:col-end-7 sm:row-start-3 sm:row-end-6 z-9 max-sm:h-max transition-all duration-300"
-      draggable="false"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+      drag
+  dragMomentum={false}
+  dragElastic={0.8}
+  dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}  // ← REMOVE THIS
+  whileDrag={{ scale: 0.995, cursor: "grabbing" }}
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0, x: 0 }}  // ← This brings it back to original position
+  transition={{ duration:0.4,ease:"easeInOut"}}
+  onDragEnd={() => {
+    // Optional: trigger any action
+  }}
     >
       <div className="w-full h-full">
         <div className="h-full grid grid-cols-1 sm:grid-cols-5 sm:grid-rows-7 max-sm:py-2 max-sm:gap-2 shadow-none!">

@@ -69,10 +69,17 @@ const SocialLinks = () => {
       tabIndex={0}
       aria-label="Draggable element"
       className="relative flex rounded-xl border-none transform-gpu cursor-grab row-start-2 sm:col-start-7 sm:col-end-9 sm:row-start-1 sm:row-end-2 w-full sm:h-max sm:mt-auto sm:mr-auto z-7 max-sm:h-max bg-transparent transition-all duration-300"
-      draggable="false"
+       drag
+   dragMomentum={false}                
+      dragElastic={0.8}                 
+      dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+      whileDrag={{ scale: 0.995, cursor: "grabbing" }} 
       initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+      animate={{ opacity: 1, y: 0, x: 0 }} 
+      transition={{ duration:0.4,ease:"easeInOut"}} 
+      onDragEnd={() => {
+        
+      }}
     >
       <div className="w-full h-full">
         <div className="relative h-full p-0.5 gap-0.5 flex flex-col max-sm:flex-row max-sm:justify-center justify-between mr-auto bg-transparent">

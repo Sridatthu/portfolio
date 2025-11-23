@@ -58,10 +58,17 @@ const TechStack = () => {
           ? "border-dark-3 bg-dark-1 [box-shadow:0_0px_60px_-25px_#ffffff1f_inset]"
           : "border-gray-200 bg-white [box-shadow:0_0px_20px_-10px_#00000010_inset]"
       }`}
-      draggable="false"
+      drag
+   dragMomentum={false}                
+      dragElastic={0.8}                 
+      dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+      whileDrag={{ scale: 0.995, cursor: "grabbing" }} 
       initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      animate={{ opacity: 1, x: 0, y: 0 }} 
+      transition={{ duration:0.4,ease:"easeInOut"}} 
+      onDragEnd={() => {
+        
+      }}
     >
       <div className="w-full h-full">
         <div
