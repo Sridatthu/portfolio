@@ -27,7 +27,7 @@ const projectsData = [
     image: "/assets/master-quiz.png",
     link: "https://masterquiz16.netlify.app/",
     github: "https://github.com/Sridatthu/MasterQuiz",
-    tags: ["Java","SpringBoot","MySql","ReactJs","Tailwindcss","Framer-Motion"],
+    tags: ["Java","SpringBoot","MySql","ReactJs","Tailwindcss","Motion"],
   },
   {
     id: "3",
@@ -37,7 +37,7 @@ const projectsData = [
     image: "/assets/portfolio1.png",
     link: "https://portfolio-beryl-theta-66.vercel.app/",
     github: "https://github.com/Sridatthu/portfolio",
-    tags: ["NextJs","Tailwindcss","Shadcn","MagicUi","Framer-Motion"],
+    tags: ["NextJs","Tailwindcss","Shadcn","MagicUi","Motion"],
   },
    {
     id: "4",

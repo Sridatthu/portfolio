@@ -1,22 +1,35 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useTheme } from "next-themes";
 
 const TechStack = () => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
-    
-      useEffect(() => {
-        setMounted(true);
-      }, []);
-    
-      if (!mounted) return null;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  if (!mounted) return null;
   const isDark = theme === "dark";
 
   const technologies = {
-    languages:["Java","JavaScript","TypeScript","HTML","CSS"],
-    frontend: ["React", "Nextjs", "Shadcn","Tailwindcss", "Framer-Motion", "Recoil", "Redux"],
+    languages: ["Java", "JavaScript", "TypeScript", "HTML", "CSS"],
+    frontend: ["React", "Nextjs", "Shadcn", "Tailwindcss", "Motion", "Recoil", "Redux"],
     backend: ["Nodejs", "SpringBoot", "Expressjs", "NPM"],
     dbServices: ["GitHub", "Docker", "MySql", "Spring JPA", "Prisma ORM", "Postman", "Postgres", "MongoDB"],
     learning: ["Kubernetes"],
@@ -30,17 +43,25 @@ const TechStack = () => {
           : "border-gray-300 hover:border-gray-500 hover:bg-gray-50"
       }`}
     >
-       <p className={`px-2.5 font-mono rounded-md border dark:border-gray-500 border-zinc-200 mx-auto ${isDark
-        ? " text-zinc-350 hover:text-white bg-transparent"
-        :" text-gray-800 hover:text-black bg-white"
-       }`}>{name}</p>
-
+      <p
+        className={`px-2.5 font-mono rounded-md border dark:border-gray-500 border-zinc-200 mx-auto ${
+          isDark
+            ? " text-zinc-350 hover:text-white bg-transparent"
+            : " text-gray-800 hover:text-black bg-white"
+        }`}
+      >
+        {name}
+      </p>
     </div>
   );
 
   const TechCategory = ({ title, items }: { title: string; items: string[] }) => (
     <div className="flex flex-col gap-1.5">
-      <p className={`font-semibold text-xs font-mono tracking-wide transition-colors ${isDark ? "text-white" : "text-black"}`}>
+      <p
+        className={`font-semibold text-xs font-mono tracking-wide transition-colors ${
+          isDark ? "text-white" : "text-black"
+        }`}
+      >
         {title}
       </p>
       <div className="flex flex-wrap gap-1.5">
@@ -53,22 +74,22 @@ const TechStack = () => {
 
   return (
     <motion.div
-      className={`flex w-full rounded-xl border transform-gpu cursor-grab sm:col-start-1 sm:col-end-3 sm:row-start-1 sm:row-end-5 z-8 max-sm:h-max relative p-0.5 transition-all duration-300 ${
+      className={`flex w-full rounded-xl border transform-gpu ${
+        !isMobile ? "cursor-grab" : ""
+      } sm:col-start-1 sm:col-end-3 sm:row-start-1 sm:row-end-5 z-8 max-sm:h-max relative p-0.5 transition-all duration-300 ${
         isDark
           ? "border-dark-3 bg-dark-1 [box-shadow:0_0px_60px_-25px_#ffffff1f_inset]"
           : "border-gray-200 bg-white [box-shadow:0_0px_20px_-10px_#00000010_inset]"
       }`}
-      drag
-   dragMomentum={false}                
-      dragElastic={0.8}                 
+      drag={!isMobile} // Disable drag on mobile
+      dragMomentum={false}
+      dragElastic={0.8}
       dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
-      whileDrag={{ scale: 0.995, cursor: "grabbing" }} 
+      whileDrag={!isMobile ? { scale: 0.995, cursor: "grabbing" } : undefined}
       initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0, y: 0 }} 
-      transition={{ duration:0.4,ease:"easeInOut"}} 
-      onDragEnd={() => {
-        
-      }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      onDragEnd={() => {}}
     >
       <div className="w-full h-full">
         <div
@@ -80,14 +101,26 @@ const TechStack = () => {
         >
           <div className="h-max px-4 pt-4">
             <div className="flex gap-2">
-              <p className={`text-4xl font-bold transition-colors ${isDark ? "text-white" : "text-black"}`}>
+              <p
+                className={`text-4xl font-bold transition-colors ${
+                  isDark ? "text-white" : "text-black"
+                }`}
+              >
                 {"{"}
               </p>
-              <p className={`text-4xl font-bold duration-500 group-hover:pl-2 transition-colors ${isDark ? "text-white" : "text-black"}`}>
+              <p
+                className={`text-4xl font-bold duration-500 group-hover:pl-2 transition-colors ${
+                  isDark ? "text-white" : "text-black"
+                }`}
+              >
                 {"}"}
               </p>
             </div>
-            <h1 className={`text-5xl font-bold font-mono py-3 relative w-full transition-colors ${isDark ? "text-white" : "text-black"}`}>
+            <h1
+              className={`text-5xl font-bold font-mono py-3 relative w-full transition-colors ${
+                isDark ? "text-white" : "text-black"
+              }`}
+            >
               TECH <br />
               STACK
               <span
@@ -105,7 +138,7 @@ const TechStack = () => {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             <style>{`.scrollbar-hide::-webkit-scrollbar { display: none; }`}</style>
-              <TechCategory title="Languages:" items={technologies.languages} />
+            <TechCategory title="Languages:" items={technologies.languages} />
             <TechCategory title="Frontend:" items={technologies.frontend} />
             <TechCategory title="Backend:" items={technologies.backend} />
             <TechCategory title="Db & Services:" items={technologies.dbServices} />

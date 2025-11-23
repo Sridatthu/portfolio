@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Ripple } from "./ui/ripple";
@@ -26,17 +26,9 @@ const ProjectCard = () => {
           ? "bg-purple-600 border-dark-3 [box-shadow:0_0px_60px_-20px_#ffffff1f_inset]"
           : "bg-purple-400 border-purple-300 [box-shadow:0_0px_20px_-10px_#c084fc40_inset]"
       } border-none`}
-     drag
-   dragMomentum={false}                
-      dragElastic={0.8}                 
-      dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
-      whileDrag={{ scale: 0.995, cursor: "grabbing" }} 
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, y: 0, x: 0 }} 
       transition={{ duration:0.4,ease:"easeInOut"}} 
-      onDragEnd={() => {
-        
-      }}
     >
       <div className="w-full h-full">
         <Link href="/projects">

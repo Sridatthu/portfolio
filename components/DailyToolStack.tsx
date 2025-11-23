@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import axios from "axios";
 
-const FALLBACK_GALAXY_IMAGE =process.env.NEXT_PUBLIC_FALLBACK_GALAXY_IMAGE;
+const FALLBACK_GALAXY_IMAGE = process.env.NEXT_PUBLIC_FALLBACK_GALAXY_IMAGE;
 const UNSPLASH_CLIENT_ID = process.env.NEXT_PUBLIC_UNSPLASH_CLIENT_ID;
 const UNSPLASH_API = `${process.env.NEXT_PUBLIC_UNSPLASH_API}${UNSPLASH_CLIENT_ID}`;
 
@@ -22,10 +22,23 @@ const DailyToolStack = () => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [nasaImg, setNasaImg] = useState<NasaImage>({ loading: true });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     fetchGalaxyImage();
+
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   const fetchGalaxyImage = async () => {
@@ -80,7 +93,9 @@ const DailyToolStack = () => {
   const ToolIcon = ({ icon, name }: { icon: string; name: string }) => (
     <div
       className={`aspect-square w-12 max-sm:max-w-11 p-0 rounded-2xl hover:scale-125 transition-all shadow-lg duration-300 ease-in-out opacity-90 cursor-pointer ${
-        isDark ? "bg-white hover:shadow-white/40" : "bg-gray-100 hover:shadow-gray-400/40"
+        isDark
+          ? "bg-white hover:shadow-white/40"
+          : "bg-gray-100 hover:shadow-gray-400/40"
       }`}
     >
       <Image
@@ -99,18 +114,20 @@ const DailyToolStack = () => {
       role="button"
       tabIndex={0}
       aria-label="Draggable element"
-      className="relative flex w-full rounded-xl border-none bg-transparent transform-gpu cursor-grab sm:col-start-3 sm:col-end-7 sm:row-start-3 sm:row-end-6 z-9 max-sm:h-max transition-all duration-300"
-      drag
-  dragMomentum={false}
-  dragElastic={0.8}
-  dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}  // ← REMOVE THIS
-  whileDrag={{ scale: 0.995, cursor: "grabbing" }}
-  initial={{ opacity: 0, y: 50 }}
-  animate={{ opacity: 1, y: 0, x: 0 }}  // ← This brings it back to original position
-  transition={{ duration:0.4,ease:"easeInOut"}}
-  onDragEnd={() => {
-    // Optional: trigger any action
-  }}
+      className={`relative flex w-full rounded-xl border-none bg-transparent transform-gpu ${
+        !isMobile ? "cursor-grab" : ""
+      } sm:col-start-3 sm:col-end-7 sm:row-start-3 sm:row-end-6 z-9 max-sm:h-max transition-all duration-300`}
+      drag={!isMobile} // Disable drag on mobile
+      dragMomentum={false}
+      dragElastic={0.8}
+      dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+      whileDrag={!isMobile ? { scale: 0.995, cursor: "grabbing" } : undefined}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0, x: 0 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      onDragEnd={() => {
+        // Optional: trigger any action
+      }}
     >
       <div className="w-full h-full">
         <div className="h-full grid grid-cols-1 sm:grid-cols-5 sm:grid-rows-7 max-sm:py-2 max-sm:gap-2 shadow-none!">
@@ -123,7 +140,9 @@ const DailyToolStack = () => {
             >
               <div
                 className={`relative w-max border rounded-3xl flex flex-col items-center justify-center h-full gap-2.5 max-sm:px-3 px-2 py-2 mx-auto max-sm:flex-row flex-wrap max-sm:w-full backdrop-blur-2xl transition-colors ${
-                  isDark ? "border-dark-3 bg-zinc-800/10" : "border-gray-300 bg-gray-100/10"
+                  isDark
+                    ? "border-dark-3 bg-zinc-800/10"
+                    : "border-gray-300 bg-gray-100/10"
                 }`}
               >
                 {tools.map((tool) => (
@@ -248,7 +267,9 @@ const DailyToolStack = () => {
                   src="/icons/play.svg"
                   width={30}
                   height={30}
-                  className={`size-full aspect-square ${isDark ? "invert" : ""}`}
+                  className={`size-full aspect-square ${
+                    isDark ? "invert" : ""
+                  }`}
                   priority={false}
                 />
               </div>
